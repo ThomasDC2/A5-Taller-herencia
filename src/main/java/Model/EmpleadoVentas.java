@@ -1,4 +1,4 @@
-package App;
+package Model;
 
 public class EmpleadoVentas extends Empleado {
     private float totalVentas;

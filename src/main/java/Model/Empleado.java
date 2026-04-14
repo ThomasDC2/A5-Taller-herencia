@@ -1,4 +1,4 @@
-package App;
+package Model;
 
 public abstract class Empleado {
     private String nombre;

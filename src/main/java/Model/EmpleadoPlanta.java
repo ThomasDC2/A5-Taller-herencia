@@ -1,4 +1,4 @@
-package App;
+package Model;
 
 public class EmpleadoPlanta extends Empleado {
     private String cargo;

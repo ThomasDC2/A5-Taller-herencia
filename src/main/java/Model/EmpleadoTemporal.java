@@ -1,4 +1,4 @@
-package App;
+package Model;
 
 public class EmpleadoTemporal extends Empleado {
     private int diasTrabajados;
