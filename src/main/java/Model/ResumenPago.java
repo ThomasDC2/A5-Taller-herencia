@@ -1,4 +1,4 @@
-package App;
+package Model;
 
 public record ResumenPago(
         String documento,
@@ -6,5 +6,6 @@ public record ResumenPago(
         String tipoEmpleado,
         float salarioBruto,
         float descuentos,
-        float salarioNeto
-) {}
+        float salarioNeto){
+    }
+
