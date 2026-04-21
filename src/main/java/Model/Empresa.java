@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Empresa {
     private String nombre;
@@ -30,6 +31,9 @@ public class Empresa {
         if (empleado == null) {
             throw new IllegalArgumentException("El empleado no puede ser nulo.");
         }
+        if (buscarEmpleadoPorDocumento(empleado.getDocumento()) != null) {
+            throw new IllegalArgumentException("Ya existe un empleado con ese documento.");
+        }
         listaEmpleados.add(empleado);
         System.out.println("✓ Empleado agregado exitosamente.");
     }
@@ -47,6 +51,10 @@ public class Empresa {
             if (e.getDocumento().equals(documento)) return e;
         }
         return null;
+    }
+
+    public Empleado buscarPorDocumento(String documento) {
+        return buscarEmpleadoPorDocumento(documento);
     }
 
     public Empleado obtenerEmpleadoConMayorSalarioNeto() {
@@ -67,6 +75,27 @@ public class Empresa {
         return listaEmpleados.stream()
                 .map(Empleado::calcularSalarioNeto)
                 .reduce(0.0f, Float::sum);
+    }
+
+    public List<Empleado> empleadosConSalarioMayorA(float valor) {
+        ArrayList<Empleado> empleados = new ArrayList<>();
+        for (Empleado empleado : listaEmpleados) {
+            if (empleado.calcularSalarioNeto() > valor) {
+                empleados.add(empleado);
+            }
+        }
+        return empleados;
+    }
+
+    public List<EmpleadoTemporal> empleadosTemporalesConMasDe100Horas() {
+        ArrayList<EmpleadoTemporal> empleados = new ArrayList<>();
+        for (Empleado empleado : listaEmpleados) {
+            if (empleado instanceof EmpleadoTemporal temporal &&
+                    temporal.getDiasTrabajados() * 8 > 100) {
+                empleados.add(temporal);
+            }
+        }
+        return empleados;
     }
 
     public void mostrarResumenesDePago() {
